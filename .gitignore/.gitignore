@@ -1,0 +1,40 @@
+# how create a csv file from lists
+list1=["Anna", "Beata", "Adam"]
+list2=[234, 345,  456]
+list3=['2014-01-02','2016-04-01','2016-03-01']
+
+'''
+import csv  #it is from Python 3 official documentation
+with open('eggs.csv', 'w', newline='') as csvfile:
+    spamwriter = csv.writer(csvfile, delimiter=';',
+                            quotechar='|', quoting=csv.QUOTE_MINIMAL)
+    spamwriter.writerow(['Spam'] * 5 + ['Baked Beans'])
+    spamwriter.writerow(['Spam', 'Lovely Spam', 'Wonderful Spam'])
+
+
+'''
+with open('lista_3.csv', 'r+',newline='' ) as csvfile: #may use format 'w'
+    writer = csv.writer(csvfile, delimiter=';')
+    writer.writerow(['name', 'id_worker','date'])
+    for item1,item2, item3 in zip(list1,list2,list3):
+          writer.writerow([item1, item2, item3])
+
+''' # it is from Python 3 official documentation (
+with open('names.csv', 'w') as csvfile:
+    fieldnames = ['first_name', 'last_name']
+    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+    writer.writeheader()
+    writer.writerow({'first_name': 'Baked', 'last_name': 'Beans'})
+    writer.writerow({'first_name': 'Lovely', 'last_name': 'Spam'})
+    writer.writerow({'first_name': 'Wonderful', 'last_name': 'Spam'})
+'''
+#it is my way to make dictionary file in csv
+mydict ={'Tom':12,'John':34,'Edward':2}
+
+with open('names.csv', 'r+',newline='' ) as csvfile: #may use format 'w'
+      writer = csv.writer(csvfile, delimiter=';')
+      writer.writerow(['name', 'id room'])
+      for key, value in mydict.items():
+            writer.writerow([key, value])
+
